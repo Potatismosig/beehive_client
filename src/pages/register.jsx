@@ -1,5 +1,5 @@
 import { useState } from "react";
-import registerFetch from "../components/registerFetch";
+import registerFetch from "../components/authentication/registerFetch";
 import { Link } from "react-router-dom";
 
 export default function Register() {
