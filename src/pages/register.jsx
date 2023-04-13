@@ -1,5 +1,6 @@
 import { useState } from "react";
 import registerFetch from "../components/registerFetch";
+import { Link } from "react-router-dom";
 
 export default function Register() {
     const [username, setUsername] = useState('');
@@ -39,6 +40,9 @@ export default function Register() {
             </label>
 
             <button type="submit">Sign Up</button>
+
+            <Link className="linkTo" to="/">Sign in</Link>
+            
             {/* <div className={error ? "success" : "error"}>
                 <p>{message}</p>
             </div> */}
