@@ -1,6 +1,7 @@
 import { useState } from "react";
-import loginFetch from "../components/authentication/loginFetch";
 import { Link, useNavigate } from "react-router-dom";
+import loginFetch from "../components/authentication/loginFetch";
+import '../styles/auth.scss';
 
 export default function Login() {
     const [username, setUsername] = useState('');
@@ -28,30 +29,28 @@ export default function Login() {
         }
     };
     return (
-        <form className="form" onSubmit={handleSubmit}>
-            <h1>Sign In</h1>
+        <div className="form-container sign-in-container">
+            <form className="form" onSubmit={handleSubmit}>
+                <h1>Sign In</h1>
 
-            <label htmlFor="username" className="userInfoLabel">
-                <span>Username</span>
-                <input type="text" id="username" className="userInfo" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-            </label>
+                <label htmlFor="username" className="userInfoLabel">
+                    <input type="text" id="username" className="userInfo" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
+                </label>
 
-            <label htmlFor="password" className="userInfoLabel">
-                <span>Password</span>
-                <input type="password" id="password" className="userInfo" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Min 3 charaters long" />
-            </label>
+                <label htmlFor="password" className="userInfoLabel">
+                    <input type="password" id="password" className="userInfo" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Min 3 charaters long" />
+                </label>
 
-            <button type="submit">Sign In</button>
-
-            <Link className="linkTo" to="/register">Sign Up</Link>
-            
-            {!error ? 
-                <div className="error">
-                    <p>{message}</p>
-                </div>
-            :
-                <></>
-            }
-        </form>
+                <button type="submit">Sign In</button>
+                
+                {!error ? 
+                    <div className="error">
+                        <p>{message}</p>
+                    </div>
+                :
+                    <></>
+                }
+            </form>
+        </div>
     );
 }
