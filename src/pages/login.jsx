@@ -1,23 +1,23 @@
 import { useState } from "react";
-import registerFetch from "../components/authentication/registerFetch";
+import loginFetch from "../components/authentication/loginFetch";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Register() {
+export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const [error, setError] = useState(false);
-    const navigate = useNavigate();
-
+    const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await registerFetch(username, password);
+            const response = await loginFetch(username, password);
             const data = await response.json();
             setError(response.ok);
             if (response.ok) {
-                navigate("/", { state: { username } });
+                navigate("/Home", { state: { username } });
             }
+            setError(response.ok);
             setMessage(data);
             return;
 
@@ -29,7 +29,7 @@ export default function Register() {
     };
     return (
         <form className="form" onSubmit={handleSubmit}>
-            <h1>Sign Up</h1>
+            <h1>Sign In</h1>
 
             <label htmlFor="username" className="userInfoLabel">
                 <span>Username</span>
@@ -41,13 +41,17 @@ export default function Register() {
                 <input type="password" id="password" className="userInfo" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Min 3 charaters long" />
             </label>
 
-            <button type="submit">Sign Up</button>
+            <button type="submit">Sign In</button>
 
-            <Link className="linkTo" to="/">Sign in</Link>
+            <Link className="linkTo" to="/register">Sign Up</Link>
             
-            <div className={error ? "success" : "error"}>
-                <p>{message}</p>
-            </div>
+            {!error ? 
+                <div className="error">
+                    <p>{message}</p>
+                </div>
+            :
+                <></>
+            }
         </form>
     );
 }
