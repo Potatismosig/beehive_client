@@ -1,8 +1,8 @@
 import { useState } from "react";
-import registerFetch from "../components/authentication/registerFetch";
+import loginFetch from "../components/authentication/loginFetch";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Register() {
+export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
@@ -11,12 +11,13 @@ export default function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await registerFetch(username, password);
+            const response = await loginFetch(username, password);
             const data = await response.json();
             setError(response.ok);
             if (response.ok) {
                 navigate("/Home", { state: { username } });
             }
+            setError(response.ok);
             setMessage(data);
             return;
 
@@ -44,9 +45,13 @@ export default function Register() {
 
             <Link className="linkTo" to="/register">Sign Up</Link>
             
-            {/* <div className={error ? "success" : "error"}>
-                <p>{message}</p>
-            </div> */}
+            {!error ? 
+                <div className="error">
+                    <p>{message}</p>
+                </div>
+            :
+                <></>
+            }
         </form>
     );
 }
