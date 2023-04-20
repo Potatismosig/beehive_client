@@ -1,6 +1,7 @@
 import { useState } from "react";
-import registerFetch from "../components/authentication/registerFetch";
 import { Link, useNavigate } from "react-router-dom";
+import registerFetch from "../components/authentication/registerFetch";
+import '../styles/auth.scss';
 
 export default function Register() {
     const [username, setUsername] = useState('');
@@ -28,26 +29,26 @@ export default function Register() {
         }
     };
     return (
-        <form className="form" onSubmit={handleSubmit}>
-            <h1>Sign Up</h1>
+        <div className="form-container sign-up-container">
+            <form className="form" onSubmit={handleSubmit}>
+                <h1>Sign Up</h1>
 
-            <label htmlFor="username" className="userInfoLabel">
-                <span>Username</span>
-                <input type="text" id="username" className="userInfo" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-            </label>
+                <label htmlFor="username" className="userInfoLabel">
+                    <input type="text" id="username" className="userInfo" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
+                </label>
 
-            <label htmlFor="password" className="userInfoLabel">
-                <span>Password</span>
-                <input type="password" id="password" className="userInfo" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Min 3 charaters long" />
-            </label>
+                <label htmlFor="password" className="userInfoLabel">
+                    <input type="password" id="password" className="userInfo" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Min 3 charaters long" />
+                </label>
 
-            <button type="submit">Sign Up</button>
+                <button type="submit">Sign Up</button>
+                
+                <div className={error ? "regSuccess" : "regError"}>
+                    <p>{message}</p>
+                </div>
+            </form>
+        </div>
 
-            <Link className="linkTo" to="/">Sign in</Link>
-            
-            <div className={error ? "success" : "error"}>
-                <p>{message}</p>
-            </div>
-        </form>
+        
     );
 }
