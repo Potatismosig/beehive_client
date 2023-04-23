@@ -1,0 +1,55 @@
+.home{
+    background: #FEF5D2;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+
+    & .posts{
+        max-width: 1400px;
+        width: 100%;
+        height: fit-content;
+        background-color: violet;
+        display: flex;
+        flex-direction: row;
+
+        & .postImg{
+            max-width: 1000px;
+            width: 100%;
+            height: fit-content;
+            background-color: red;
+
+            & img{
+                width: 100%;
+            }
+        }
+
+        & .postInfo{
+            max-width: 400px;
+            width: 100%;
+
+            & .userinfo-engagement{
+                background-color: royalblue;
+                height: 200px;
+                & .engagement{
+                    display: flex;
+                    flex-direction: row;
+                    gap: 30px;
+                }
+            }
+
+            & .comments{
+                background-color: brown;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                height: calc(100% - 200px);
+                overflow: auto;
+                
+                & .comment{
+                    background-color: chartreuse;
+                }
+            }
+        }
+    }
+}
