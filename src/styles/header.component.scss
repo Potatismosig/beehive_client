@@ -1,0 +1,29 @@
+h1 {
+    color: #fabe25;
+}
+
+
+.navbar {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto;
+    border-bottom: 1px solid #FEF5D2;
+    background-color: #fdf2c6;
+    width: 100%;
+  
+     .links {
+      margin-left: auto;
+      }
+     a {
+      color:#fabe25;
+      ;
+      margin-left: 16px;
+      text-decoration: none;
+      padding: 6px;
+      &:hover {
+       opacity: 0.5;
+    }
+    }
+    }
