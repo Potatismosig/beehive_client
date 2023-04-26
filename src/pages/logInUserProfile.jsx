@@ -5,6 +5,9 @@ import getUserPosts from '../components/posts/getUserPosts.jsx';
 import getUserInfo from '../components/users/getUserInfo.jsx';
 import deletePosts from '../components/posts/deletePosts.jsx';
 import putPosts from '../components/posts/putPosts.jsx';
+import Header from '../components/pageComponents/header';
+
+
 
 export default function LogInUserProfile() {
     const navigateToLogin = useNavigate();
@@ -70,6 +73,7 @@ export default function LogInUserProfile() {
     }
     return (
         <section className="logInUserProfile">
+          <Header />
             <div className="profile-card js-profile-card">
                 <div className="profile-card__img">
                     <img src="https://picsum.photos/536/354" alt="profile" />
@@ -105,9 +109,9 @@ export default function LogInUserProfile() {
                         {post.comments.length ?
                             <h3>Comments </h3> : <h3></h3>}
                         {post.comments.length > 0 && post.comments.map((comment, index) => (
-                            <div>
+                            <div key={index}>
                                 <span>{comment.username}</span>
-                                <p key={index}>{comment.comment}</p>
+                                <p>{comment.comment}</p>
                             </div>
                         ))}
                     </div>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import getAllUsers from '../components/users/getAllUsers'
 import followUser from '../components/users/followUser';
 import '../styles/allUsers.scss'
+import Header from '../components/pageComponents/header';
 
 
 export default function AllUsers() {
@@ -56,6 +57,7 @@ export default function AllUsers() {
   
   return (    
     <section className='allUsers'>
+      <Header />
       {users.length ? (
         users.map((user, index) => (
           <div key={index} className='user'>
