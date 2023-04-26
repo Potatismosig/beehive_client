@@ -4,11 +4,10 @@
 .allUsers{
     background: #FEF5D2;
     font-family: 'Roboto', sans-serif;
-    font-size:x-large;
-    font-weight: 800;
+    
     width: 100vw;
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
@@ -18,6 +17,8 @@
         display: flex;
         flex-direction: row;
         gap: 20px;
+        font-size:x-large;
+    font-weight: 800;
     }
 & .followButton {
     display: flex;
@@ -28,6 +29,8 @@
     padding: 10px 10px;
     cursor: pointer;
     opacity: 0.6;
+    font-size:x-large;
+    font-weight: 800;
      
 
     &:hover {
