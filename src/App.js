@@ -1,5 +1,5 @@
 import './App.css';
-import { Auth } from './pages/index';
+import {Auth, Home} from './pages/index';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LogInUserProfile from './pages/logInUserProfile';
 
@@ -10,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Auth />} />
           <Route path="/user" element={<LogInUserProfile />} />
+          <Route path="/Home" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </main>
