@@ -7,6 +7,43 @@
     width: 100vw;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    & .createPost{
+        max-width: 1400px;
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: #f49d0c;
+        margin-top: 20px;
+        border-radius: 10px;
+        padding: 20px;
+        gap: 15px;
+
+        & input[type="text"] {
+            background:transparent;
+            border: 1px solid black;
+            padding: 15px 10px;
+            width: 60%;
+        }
+
+        & button{
+            background-color: #fabe25;
+            border: 1px solid black;
+            padding: 15px 10px;
+            width: 60%;
+            cursor: pointer;
+            opacity: 0.6;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
 
     & .posts{
         max-width: 1400px;
@@ -163,11 +200,5 @@
                 }
             }
         }
-    }
-
-    & .sideMenu{
-        width: 100px;
-        height: 100px;
-        background-color: blue;
     }
 }
