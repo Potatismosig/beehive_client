@@ -123,72 +123,79 @@ export default function Home() {
             </form>
 
             <div className='posts'>
-            {data.length > 0 && data.map((post, index) => (
-                <div className='post' key={post._id}>
-                    <div className='postImg'>
-                        <img src={post.linkImg} alt="Post img" />
-                    </div>
-
-                    <div className='postInfo'>
-                        <div className='userinfo-engagement'>
-                            <div className='userProfile'>
-                                <img src="https://cdn.leonardo.ai/users/c7b2baf0-23b8-4ae7-81d0-f7389e13d481/generations/a900af82-9cc2-4dc1-a635-6535ed76a6eb/Spirit_Creatures_realistic_cute_bee_1.jpg" alt="Profile img" />
-                                <p className='username'>{post.username}</p>     
+            {
+                data.length ?
+                    data.length > 0 && data.map((post, index) => (
+                        <div className='post' key={post._id}>
+                            <div className='postImg'>
+                                <img src={post.linkImg} alt="Post img" />
                             </div>
-                            <p className='description'>{post.postContent}</p>
-                            <div className='engagement'>
-                                <label htmlFor={index} className='likeInfo'>
-                                    <input type="checkbox" id={index} value={post._id} disabled={post.likes?.includes(userInfo.username)} onChange={handleCheckboxChange} style={{}}/>
-                                    <span className='likeSpan'
-                                        style={{
-                                            color: post.likes?.includes(userInfo.username) ? '#d7a06066' : '#80482c'
-                                        }}
-                                    >
-                                        <GiTreeBeehive></GiTreeBeehive>
-                                    </span>
-                                    <span>{post.likes?.length}</span>
-                                </label>
 
-                                <div className='commentCount'>
-                                    <span className='commentSpan'>
-                                        <BiCommentDots></BiCommentDots>
-                                    </span>
-                                    <span>{post.comments?.length}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className='comments'>
-                            {post.comments.map((comment, index) => (
-                                <div className='comment' key={index}>
-
+                            <div className='postInfo'>
+                                <div className='userinfo-engagement'>
                                     <div className='userProfile'>
-                                        <img src="https://cdn.leonardo.ai/users/c7b2baf0-23b8-4ae7-81d0-f7389e13d481/generations/fcf555b6-033f-4e45-b2b2-929b4f01ecf5/Spirit_Creatures_realistic_cute_bee_2.jpg" alt="" />
-                                        <p className='username'>{comment.username}</p>
+                                        <img src="https://cdn.leonardo.ai/users/c7b2baf0-23b8-4ae7-81d0-f7389e13d481/generations/a900af82-9cc2-4dc1-a635-6535ed76a6eb/Spirit_Creatures_realistic_cute_bee_1.jpg" alt="Profile img" />
+                                        <p className='username'>{post.username}</p>     
                                     </div>
-                                    <p className='commentContent'>{comment.comment}</p>
+                                    <p className='description'>{post.postContent}</p>
+                                    <div className='engagement'>
+                                        <label htmlFor={index} className='likeInfo'>
+                                            <input type="checkbox" id={index} value={post._id} disabled={post.likes?.includes(userInfo.username)} onChange={handleCheckboxChange} style={{}}/>
+                                            <span className='likeSpan'
+                                                style={{
+                                                    color: post.likes?.includes(userInfo.username) ? '#d7a06066' : '#80482c'
+                                                }}
+                                            >
+                                                <GiTreeBeehive></GiTreeBeehive>
+                                            </span>
+                                            <span>{post.likes?.length}</span>
+                                        </label>
+
+                                        <div className='commentCount'>
+                                            <span className='commentSpan'>
+                                                <BiCommentDots></BiCommentDots>
+                                            </span>
+                                            <span>{post.comments?.length}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            ))}
 
-                            <form className="commentForm" onSubmit={(e) => handleSubmit(e, post._id)}>
-                                <label className="commentLabel" htmlFor={post._id}>
-                                <input
-                                    type="text"
-                                    id={post._id}
-                                    value={commentContent[post._id] || ''}
-                                    onChange={(e) => setCommentContent({ ...commentContent, [post._id]: e.target.value })}
-                                    placeholder="Min 3 characters long"
-                                />
+                                <div className='comments'>
+                                    {post.comments.map((comment, index) => (
+                                        <div className='comment' key={index}>
 
-                                </label>
-                                <button type="submit">
-                                    <BiPaperPlane></BiPaperPlane>
-                                </button>
-                            </form>
+                                            <div className='userProfile'>
+                                                <img src="https://cdn.leonardo.ai/users/c7b2baf0-23b8-4ae7-81d0-f7389e13d481/generations/fcf555b6-033f-4e45-b2b2-929b4f01ecf5/Spirit_Creatures_realistic_cute_bee_2.jpg" alt="" />
+                                                <p className='username'>{comment.username}</p>
+                                            </div>
+                                            <p className='commentContent'>{comment.comment}</p>
+                                        </div>
+                                    ))}
+
+                                    <form className="commentForm" onSubmit={(e) => handleSubmit(e, post._id)}>
+                                        <label className="commentLabel" htmlFor={post._id}>
+                                        <input
+                                            type="text"
+                                            id={post._id}
+                                            value={commentContent[post._id] || ''}
+                                            onChange={(e) => setCommentContent({ ...commentContent, [post._id]: e.target.value })}
+                                            placeholder="Min 3 characters long"
+                                        />
+
+                                        </label>
+                                        <button type="submit">
+                                            <BiPaperPlane></BiPaperPlane>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    ))
+                :
+                <div>
+                    <p>Error, No posts found</p>
                 </div>
-            ))}
+            }
             </div>
         </section>
     )
