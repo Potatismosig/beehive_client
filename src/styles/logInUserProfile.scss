@@ -153,6 +153,30 @@ clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
       font-weight: bold;
       color: black
     }
+    & #update {
+      background-color: #fde58a;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: small;
+      font-weight: bold;
+      padding: 2%;
+      margin: 2%;
+      cursor: pointer;
+    }
+    & input {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-size: 16px;
+      color: #555;
+      
+      &:focus {
+        outline: none;
+        border-color: blue;
+        box-shadow: 0 0 4px rgba(0, 0, 255, 0.4);
+      }
+    }
 
   }
 }
