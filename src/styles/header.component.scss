@@ -1,5 +1,11 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 h1 {
     color: #fabe25;
+    margin-left: 42rem;
+    
 }
 
 
@@ -14,12 +20,11 @@ h1 {
     width: 100%;
   
      .links {
-      margin-left: auto;
+    //   margin-left: auto;
+      margin-left: 42rem;
       }
      a {
       color:#fabe25;
-      ;
-      margin-left: 16px;
       text-decoration: none;
       padding: 6px;
       &:hover {
