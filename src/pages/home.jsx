@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import '../styles/home.scss';
 import getFriendsPosts from '../components/posts/getFriendsPosts';
 import getUserInfo from '../components/users/getUserInfo';
@@ -18,6 +18,7 @@ export default function Home() {
     const [commentContent, setCommentContent] = useState({});
     const [createTextContent ,setCreateTextContent] = useState([]);
     const [imageurl ,setImageurl] = useState([]);
+    const [disableBtn ,setDisableBtn] = useState(true);
 
     useEffect(() => {
         fetchUserInfosAndFriendsPosts();
@@ -102,6 +103,9 @@ export default function Home() {
             }
           );
           const data = await response.json();
+          if(data){
+            setDisableBtn(false)
+          }
           setImageurl(data.secure_url);
         } catch (error) {
           console.error('Error uploading the image:', error);
@@ -119,7 +123,7 @@ export default function Home() {
                 <h1>Create Bee post</h1>
                 <input type="text" value={createTextContent} onChange={(e) => setCreateTextContent(e.target.value)} required/>
                 <input type="file" accept="image/png, image/jpeg" onChange={handleFileChange} required/>
-                <button type='submit' disabled={!imageurl}>Create</button>
+                <button type='submit' disabled={disableBtn}>Create</button>
             </form>
 
             <div className='posts'>
@@ -135,7 +139,7 @@ export default function Home() {
                                 <div className='userinfo-engagement'>
                                     <div className='userProfile'>
                                         <img src="https://cdn.leonardo.ai/users/c7b2baf0-23b8-4ae7-81d0-f7389e13d481/generations/a900af82-9cc2-4dc1-a635-6535ed76a6eb/Spirit_Creatures_realistic_cute_bee_1.jpg" alt="Profile img" />
-                                        <p className='username'>{post.username}</p>     
+                                        <Link className="friendUsername" to={`/friend/${post.username}`}>{post.username}</Link>
                                     </div>
                                     <p className='description'>{post.postContent}</p>
                                     <div className='engagement'>
