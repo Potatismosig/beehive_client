@@ -5,6 +5,7 @@ import getFriendsPosts from '../components/posts/getFriendsPosts';
 import getUserInfo from '../components/users/getUserInfo';
 import likePost from '../components/posts/likePost';
 import commentPostFetch from '../components/posts/commentPost';
+import createdPostFetch from '../components/posts/createPost';
 
 import { GiTreeBeehive } from 'react-icons/gi';
 import { BiCommentDots, BiPaperPlane } from 'react-icons/bi';
@@ -15,6 +16,8 @@ export default function Home() {
     const [data, setData] = useState([]);
     const [userInfo, setUserInfo] = useState([]);
     const [commentContent, setCommentContent] = useState({});
+    const [createTextContent ,setCreateTextContent] = useState([]);
+    const [imageurl ,setImageurl] = useState([]);
 
     useEffect(() => {
         fetchUserInfosAndFriendsPosts();
@@ -65,6 +68,14 @@ export default function Home() {
         await friendsPosts();
     }
 
+    async function createdPost(postContent, link) {
+        const response = await createdPostFetch(postContent, link);
+        const data = await response.json();
+        if (data === "Authentication error: jwt expired") {
+            navigate("/");
+        }
+    }
+
     function handleCheckboxChange(event) {
         const postId = event.target.value;
         likeUserPost(postId);
@@ -76,9 +87,41 @@ export default function Home() {
         commentPost(postId, commentText);
     }
     
+    const handleFileChange = async (event) => {
+        const file = event.target.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', 'emjgys7r');
+        
+        try {
+          const response = await fetch(
+            'https://api.cloudinary.com/v1_1/dddzde2ks/image/upload',
+            {
+              method: 'POST',
+              body: formData,
+            }
+          );
+          const data = await response.json();
+          setImageurl(data.secure_url);
+        } catch (error) {
+          console.error('Error uploading the image:', error);
+        }
+    };
+
+    const handleSubmitCreate = async (e) => {
+        e.preventDefault();
+        createdPost(createTextContent, imageurl)
+    };
 
     return (
         <section className='home'>
+            <form action="" className='createPost' onSubmit={handleSubmitCreate}>
+                <h1>Create Bee post</h1>
+                <input type="text" value={createTextContent} onChange={(e) => setCreateTextContent(e.target.value)} required/>
+                <input type="file" accept="image/png, image/jpeg" onChange={handleFileChange} required/>
+                <button type='submit' disabled={!imageurl}>Create</button>
+            </form>
+
             <div className='posts'>
             {data.length > 0 && data.map((post, index) => (
                 <div className='post' key={post._id}>
