@@ -10,7 +10,7 @@ export default function Header() {
     <div>
       <h1>BeeHive</h1>
       <div className="links">
-      <Link to="/">Login</Link>
+      <Link to="/">Log out</Link>
       <Link to="/home">Home</Link>
       <Link to="/user">Profile</Link>
       <Link to="/allUsers">Add Friends</Link>
