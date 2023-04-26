@@ -1,5 +1,5 @@
 import './App.css';
-import {Auth} from './pages/index';
+import {Auth, Home} from './pages/index';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Auth />} />
+          <Route path="/Home" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </main>
