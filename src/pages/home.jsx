@@ -6,6 +6,8 @@ import getUserInfo from '../components/users/getUserInfo';
 import likePost from '../components/posts/likePost';
 import commentPostFetch from '../components/posts/commentPost';
 import createdPostFetch from '../components/posts/createPost';
+import Header from '../components/pageComponents/header';
+
 
 import { GiTreeBeehive } from 'react-icons/gi';
 import { BiCommentDots, BiPaperPlane } from 'react-icons/bi';
@@ -119,6 +121,7 @@ export default function Home() {
 
     return (
         <section className='home'>
+          <Header />
             <form action="" className='createPost' onSubmit={handleSubmitCreate}>
                 <h1>Create Bee post</h1>
                 <input type="text" value={createTextContent} onChange={(e) => setCreateTextContent(e.target.value)} required/>

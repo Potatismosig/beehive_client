@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import friendsProfileFetch from "../components/users/friendsProfileFetch";
+import Header from '../components/pageComponents/header';
+
 
 export default function FriendsProfile() {
   let { friendUsername } = useParams();
@@ -28,7 +30,7 @@ export default function FriendsProfile() {
   
   return (
   <section className="logInUserProfile">
-
+  <Header />
     <div className="profile-card js-profile-card">
       <div className="profile-card__img">
           <img src="https://picsum.photos/536/354" alt="profile" />
