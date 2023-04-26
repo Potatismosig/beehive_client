@@ -1,0 +1,37 @@
+
+
+
+.allUsers{
+    background: #FEF5D2;
+    font-family: 'Roboto', sans-serif;
+    font-size:x-large;
+    font-weight: 800;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    gap: 20px;
+
+    .user{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+& .followButton {
+    display: flex;
+        flex-direction: row;
+    background-color: #fabe25;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 10px 10px;
+    cursor: pointer;
+    opacity: 0.6;
+     
+
+    &:hover {
+        opacity: 1;
+    }
+}
+}
