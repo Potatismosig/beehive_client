@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import '../styles/logInUserProfile.scss';
 import getUserPosts from '../components/posts/getUserPosts.jsx';
 import getUserInfo from '../components/users/getUserInfo.jsx';
+import deletePosts from '../components/posts/deletePosts.jsx';
+import putPosts from '../components/posts/putPosts.jsx';
 
 export default function LogInUserProfile() {
     const navigateToLogin = useNavigate();
@@ -34,8 +36,38 @@ export default function LogInUserProfile() {
         }
         setPosts(data);
     }
-    const followers = userInfos.followers;
 
+    async function deletePost(postId) {
+        const response = await deletePosts(postId);
+        const data = await response.json();
+        if (data === "Authentication error: jwt expired") {
+            navigateToLogin("/");
+            return;
+        }
+        userPosts();
+    }
+
+    async function updatePost(postId, newContent) {
+        const response = await putPosts(postId, newContent);
+        const data = await response.json();
+        if (data === "Authentication error: jwt expired") {
+            navigateToLogin("/");
+            return;
+        }
+        userPosts();
+    }
+    const followers = userInfos.followers;
+    const handleDeletePosts = (e) => {
+        const postId = e.target.value;
+        deletePost(postId);
+    }
+
+    const handleSubmitUpdate = (e) => {
+        e.preventDefault();
+        const postId = e.target.dataset.postId;
+        const postContent = e.target[0].value;
+        updatePost(postId, postContent);
+    }
     return (
         <section className="logInUserProfile">
             <div className="profile-card js-profile-card">
@@ -60,9 +92,18 @@ export default function LogInUserProfile() {
             <div className="users-feed">
                 {posts.length > 0 && posts.map((post) => (
                     <div className="contains-feed-info" key={post._id} >
-                        <img src={post.imgLink} alt="post" />
-                        <p><strong>{post.postContent}</strong></p>
-                        <h3>Comments </h3>
+                        <img src={post.linkImg} alt="post" />
+
+
+                        <form onSubmit={handleSubmitUpdate} data-post-id={post._id}>
+                            <input defaultValue={post.postContent} type="text" />
+                            <button type="submit" id="update">Update Bee post 🐝</button>
+                        </form>
+                        <br></br>
+
+                        <button onClick={handleDeletePosts} value={post._id}> 🗑️ </button>
+                        {post.comments.length ?
+                            <h3>Comments </h3> : <h3></h3>}
                         {post.comments.length > 0 && post.comments.map((comment, index) => (
                             <div>
                                 <span>{comment.username}</span>
