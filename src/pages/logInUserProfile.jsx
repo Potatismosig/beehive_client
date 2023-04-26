@@ -105,9 +105,9 @@ export default function LogInUserProfile() {
                         {post.comments.length ?
                             <h3>Comments </h3> : <h3></h3>}
                         {post.comments.length > 0 && post.comments.map((comment, index) => (
-                            <div>
+                            <div key={index}>
                                 <span>{comment.username}</span>
-                                <p key={index}>{comment.comment}</p>
+                                <p>{comment.comment}</p>
                             </div>
                         ))}
                     </div>
